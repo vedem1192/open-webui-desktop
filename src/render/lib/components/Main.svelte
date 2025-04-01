@@ -14,6 +14,10 @@
 	let currentTime = Date.now();
 
 	let showLogs = false;
+    let showIframe = false;
+
+    let windowInnerWidth = window.innerWidth
+    let windowInnerHeight = window.innerHeight
 
 	let installing = false;
 	const continueHandler = async () => {
@@ -24,6 +28,11 @@
 	};
 
 	onMount(() => {
+        window.addEventListener("resize", () => {
+            windowInnerHeight = window.innerHeight
+            windowInnerWidth = window.innerWidth
+        })
+        
 		installStatus.subscribe(async (value) => {
 			if (value !== null) {
 				await tick();
@@ -85,8 +94,18 @@
 
 		<div class=" absolute w-full top-0 left-0 right-0 z-10">
 			<div class="h-6 drag-region"></div>
+            <button onclick={() => {showIframe = true}}>Show Iframe</button>
+            {#if showIframe} 
+            <iframe
+                title="Inline Frame Example"
+                width={windowInnerWidth}
+                height={windowInnerHeight}
+                src="http://localhost:8080">
+            </iframe>
+            {/if}
 		</div>
 
+        
 		<div class="flex-1 w-full flex justify-center relative">
 			{#if $installStatus === false}
 				<div class="m-auto flex flex-col justify-center text-center max-w-2xl w-full">
@@ -193,4 +212,5 @@
 			{/if}
 		</div>
 	</div>
+    
 {/if}

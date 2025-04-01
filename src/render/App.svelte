@@ -7,7 +7,8 @@
 	import Main from './lib/components/Main.svelte';
 
 	let logs = [];
-
+    
+    
 	onMount(async () => {
 		window.addEventListener('message', (event) => {
 			// Ensure the message is coming from a trusted origin
@@ -61,7 +62,7 @@
 </script>
 
 <main class="w-screen h-screen bg-gray-900">
-	<Main />
+    <Main  />
 </main>
 
 <Toaster
