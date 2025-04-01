@@ -24,8 +24,20 @@ To work on this Electron project, you must have the following installed:
     npm i
     ```
 
+2.5. **From Vero : Create Python virtualenv and install the conda packages**:
+   I like to use pyenv, but feel free to use conda or even venv
+   pyenv resource : https://akrabat.com/creating-virtual-environments-with-pyenv/
+
+    ```bash
+    pyenv install 3.11.7
+    pyenv virtualenv 3.11.7 owui
+    pyenv activate owui
+    pip install -r requirements.txt
+    ```
+
 3. **Generate the Python environment tarball**:
     ```bash
+    pyenv activate owui
     npm run create:python-tar
     ```
     > Note: This requires **conda-lock** to be installed and properly configured.
